@@ -1,5 +1,9 @@
 package org.rudyseidinger.expensesclassification.consoleapp;
 
+import java.util.ArrayList;
+
+import org.rudyseidinger.expensesclassification.csv.CsvFileReader;
+
 public class ConsoleApp {
 
 	public static void main(String[] args) {
@@ -8,7 +12,9 @@ public class ConsoleApp {
 		}
 		else{
 			String filePath = args[0];
-			System.out.println("filePath: " + filePath);
+			System.out.println("Loading: " + filePath + " ...");
+			ArrayList<ArrayList<String>> data = new CsvFileReader(filePath).readCsvContents();
+			System.out.println(data);
 		}	
 	}
 

@@ -19,7 +19,7 @@ public class ExpensesParser {
 			try {
 				expense.setTransactionValue(parseToFloat(row.get(valueIdx)));
 				expenses.add(expense);
-			} catch (Exception e) {
+			} catch (NumberFormatException e) {
 				System.out.println(String.format("Couldn't parse: %s", e.getMessage()));
 			}			
 		}

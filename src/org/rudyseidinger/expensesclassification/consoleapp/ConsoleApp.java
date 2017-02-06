@@ -1,13 +1,17 @@
 package org.rudyseidinger.expensesclassification.consoleapp;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import org.rudyseidinger.expensesclassification.csv.CsvFileReader;
+import org.rudyseidinger.expensesclassification.models.Expense;
+import org.rudyseidinger.expensesclassification.services.ExpensesParser;
 
 public class ConsoleApp {
-
-	public static void main(String[] args) {
+	private static int titleIdx, expenseAmountIdx, dateIdx;
+	
+	public static void main(String[] args) {	
 		if (args.length == 0){
 			System.out.println("You need to supply the path to a file before continuing...");
 		}
@@ -16,16 +20,25 @@ public class ConsoleApp {
 			System.out.println("Loading: " + filePath + " ...");
 			ArrayList<ArrayList<String>> data = new CsvFileReader(filePath).readCsvContents();
 			System.out.println("The first row is: " + data.get(0));
-			System.out.println("Enter the column names to match where data types are (index-based):");
-			System.out.println("Title column:");
+			System.out.println("Enter the column names to match where data types are (index-based):");					
+			Scanner scanner = new Scanner(System.in);
 			try {
-				int titleIdx = System.in.read();
-				System.out.println("Value column:");
-				int valueColumn = System.in.read();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println(e.getMessage());
-			}			
+				System.out.println("Title column index:");
+				titleIdx = scanner.nextInt();
+				System.out.println("Amount column index:");
+				expenseAmountIdx = scanner.nextInt();
+				System.out.println("Date of expense index:");
+				dateIdx = scanner.nextInt();	
+				scanner.close();		
+				
+			} catch (InputMismatchException e) {
+				System.out.println("Enter valid values next time...");
+			}
+			
+			ArrayList<Expense> expensesList = new ExpensesParser(data).parseExpenses(titleIdx, expenseAmountIdx, dateIdx);
+			for (Expense expense : expensesList) {
+				System.out.println(expense.toString());
+			}
 		}	
 	}
 

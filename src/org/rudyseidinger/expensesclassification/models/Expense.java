@@ -33,5 +33,8 @@ public class Expense {
 		this.expenseType = expenseType;
 	}
 	
-	
+	@Override
+	public String toString() {		
+		return String.format("Title: %s - Value: %.3f\n", this.getTitle(), this.getTransactionValue()); 
+	}
 }

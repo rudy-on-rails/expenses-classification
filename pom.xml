@@ -5,32 +5,22 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Expenses Classification</name>
   <description>Classify expenses on a CSV file automatically</description>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <parent>
+	<groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+	<version>1.5.1.RELEASE</version>
+  </parent>
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <plugins>
+    <plugins>      
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>          
-        </configuration>
-      </plugin>
-      <plugin>
-	      <!-- Build an executable JAR -->
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-jar-plugin</artifactId>
-	      <version>3.0.2</version>
-	      <configuration>
-	        <archive>
-	          <manifest>
-	            <addClasspath>true</addClasspath>
-	            <classpathPrefix>src/</classpathPrefix>
-	            <mainClass>org.rudyseidinger.expensesclassification.consoleapp.ConsoleApp</mainClass>
-	          </manifest>
-	        </archive>
-	      </configuration>
-	    </plugin>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>      
     </plugins>
   </build>
   <dependencies>
@@ -39,5 +29,9 @@
   		<artifactId>hsqldb</artifactId>
   		<version>2.3.4</version>
   	</dependency>
+  	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
   </dependencies>
 </project>

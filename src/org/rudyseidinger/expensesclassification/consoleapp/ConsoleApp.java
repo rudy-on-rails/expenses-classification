@@ -12,7 +12,7 @@ import org.rudyseidinger.expensesclassification.services.ExpensesParser;
 public class ConsoleApp {
 	private static int titleIdx, expenseAmountIdx, dateIdx;
 	
-	public static void main(String[] args) {	
+	public static void old(String[] args) {	
 		if (args.length == 0){
 			log("You need to supply the path to a file before continuing...");
 		}
